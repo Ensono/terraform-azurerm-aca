@@ -11,7 +11,7 @@ module "container_app" {
   create_rg                        = var.create_rg
 
   # Container App Environment
-  container_app_environment_name = var.create_container_app_environment
+  container_app_environment_name = var.container_app_environment_name
 
   # Container App
   container_app_name                   = var.container_app_name
