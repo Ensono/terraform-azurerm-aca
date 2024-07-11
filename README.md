@@ -6,7 +6,6 @@ Bootstraps the Azure Container App.
 
 Will be used within the provisioned pipeline for your application depending on the options you chose.
 
-Pipeline implementation for infrastructure relies on workspaces, you can pass in whatever workspace you want from {{ SELECT_DEPLOYMENT_TYPE }} pipeline YAML.
 
 PREREQUISITES:
 ---
@@ -15,19 +14,22 @@ PREREQUISITES:
     - Terraform will use this to perform the authentication for the API calls
     - You will need the `client_id, subscription_id, client_secret, tenant_id`
     - Bash Example:
-      ```bash 
+
+      ```shell 
       export ARM_CLIENT_ID=xxxx \
              ARM_CLIENT_SECRET=yyyyy \
              ARM_SUBSCRIPTION_ID=yyyyy \
              ARM_TENANT_ID=yyyyy
       ```
     - PowerShell Example:
-      ```pwsh 
+
+      ```shell 
       $ARM_CLIENT_ID=xxxx
       $ARM_CLIENT_SECRET=yyyyy
       $ARM_SUBSCRIPTION_ID=yyyyy
       $ARM_TENANT_ID=yyyyy
       ```
+
 
 **Terraform Backend**
   - Resource group (can be manually created for the terraform remote state)
@@ -35,7 +37,8 @@ PREREQUISITES:
   - Ensure you have set up your `backend.tf` file within your root directory (where you are using this module) unless you wish your terraform state to remain local.
     - **IMPORTANT: Ensure you are putting this in your .gitignore to ensure you are not passing sensitive values into your repositories!!**
   - Example TF Backend File:
-    ```
+
+    ```hcl
     terraform {
       backend "azurerm" {
         resource_group_name  = "ResourceGroupName"  # Name of the resource group that your storage account resides in.
@@ -58,7 +61,8 @@ To get up and running locally you will want to create  a `terraform.tfvars` file
 For the most basic Azure Container App set up, use the below `terraform.tfvars` set up. 
 
 - **PowerShell Example:**
-```pwsh
+
+```shell
 # Define your variables
 $TFVAR_CONTENTS = @'
 create_rg                        = true
@@ -86,7 +90,8 @@ container_app_container_min_replicas   = 1
 $TFVAR_CONTENTS | Set-Content -Path "terraform.tfvars"
 ```
 - **Bash Example:**
-```bash
+
+```shell
 # Define your variables
 TFVAR_CONTENTS='''
 create_rg                        = true
@@ -118,23 +123,24 @@ $TFVAR_CONTENTS > terraform.tfvars
 
 - Ensure you are running the below terminal commands in the directory that contain the files you wish to emulate within the container.
     
-<!-- | Local Files in Repo    | Files Copied to Container |
-|------------------------|---------------------------|
-|![alt text](image-1.png)|![alt text](image-2.png)   | -->
 
 Then you can initialize your container (if you wish to use containers, ensure you have docker desktop)
   - **Bash Example**
-    ```docker
+
+    ```shell
     docker run -it --rm -v $(pwd):/opt/tf-lib amidostacks/ci-tf:latest /bin/bash
     ```
+
   - **PowerShell Example**
-    ```docker
+
+    ```shell
     docker run -it --rm -v ${PWD}:/app amidostacks/runner-pwsh:0.4.60-stable pwsh
     ```
 
 ### **3. Export your authorization Credentials OR Login via Az CLI**
 - **Bash Example:**
-  ```bash 
+
+  ```shell 
   export ARM_CLIENT_ID=xxxx \
          ARM_CLIENT_SECRET=yyyyy \
          ARM_SUBSCRIPTION_ID=yyyyy \
@@ -142,7 +148,8 @@ Then you can initialize your container (if you wish to use containers, ensure yo
   ```
 
 - **PowerShell Example:**
-  ```pwsh 
+
+  ```shell
   $ARM_CLIENT_ID=xxxx
   $ARM_CLIENT_SECRET=yyyyy
   $ARM_SUBSCRIPTION_ID=yyyyy
@@ -150,16 +157,22 @@ Then you can initialize your container (if you wish to use containers, ensure yo
   ```
 
 - **Az CLI Example:**
-  ```
+
+  ```shell
   az login
   ```
 
 ### **4. Run your Terraform Commands**
-```pwsh
+
+```shell
 terraform init # To initialize terraform backend, and pull down required modules.
 terraform plan # To check against your state file to see what is required to add to your environment.
 terraform apply # To plan and apply your configuration changes to your environment.
 ```
+
+## Example Usage
+
+Please refer to the sub folders under `examples` folder. You can provide `terraform.tfvars` and  execute `terraform apply` command in `examples`'s sub folder to try the module.
 
 ## Requirements
 
