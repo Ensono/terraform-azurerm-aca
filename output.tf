@@ -27,3 +27,8 @@ output "container_app_fqdn" {
   description = "The FQDN of the created Container App"
   value       = var.create_container_app ? azurerm_container_app.container_app[0].ingress[0].fqdn : null
 }
+
+output "container_app_principal_id" {
+  description = "The Principal ID of the Container App's Managed Identity"
+  value       = var.create_container_app && var.container_app_identity != null ? azurerm_container_app.container_app[0].identity[0].principal_id : null
+}
