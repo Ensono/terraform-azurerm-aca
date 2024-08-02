@@ -248,5 +248,6 @@ No modules.
 | <a name="output_container_app_fqdn"></a> [container\_app\_fqdn](#output\_container\_app\_fqdn) | The FQDN of the created Container App |
 | <a name="output_container_app_id"></a> [container\_app\_id](#output\_container\_app\_id) | The ID of the created Container App |
 | <a name="output_container_app_name"></a> [container\_app\_name](#output\_container\_app\_name) | The name of the created Container App |
+| <a name="output_container_app_principal_id"></a> [container\_app\_principal\_id](#output\_container\_app\_principal\_id) | The Principal ID of the Container App's Managed Identity |
 | <a name="output_container_rg_name"></a> [container\_rg\_name](#output\_container\_rg\_name) | The name of the created RG |
 <!-- END_TF_DOCS -->
