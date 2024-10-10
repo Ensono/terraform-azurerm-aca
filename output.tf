@@ -32,3 +32,7 @@ output "container_app_principal_id" {
   description = "The Principal ID of the Container App's Managed Identity"
   value       = var.create_container_app && var.container_app_identity != null ? azurerm_container_app.container_app[0].identity[0].principal_id : null
 }
+
+output "static_ip_address" {
+  value = var.create_container_app_environment ? azurerm_container_app_environment.container_app_env.static_ip_address : null
+}
