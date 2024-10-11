@@ -34,5 +34,5 @@ output "container_app_principal_id" {
 }
 
 output "static_ip_address" {
-  value = var.create_container_app_environment ? azurerm_container_app_environment.container_app_env.static_ip_address : null
+  value = var.create_container_app_environment ? azurerm_container_app_environment.container_app_env[0].static_ip_address : null
 }
