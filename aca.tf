@@ -212,7 +212,7 @@ resource "azurerm_container_app_custom_domain" "app" {
   count                                    = var.create_custom_domain_for_container_app ? 1 : 0
   name                                     = var.custom_domain
   container_app_id                         = azurerm_container_app.container_app[0].id
-  container_app_environment_certificate_id = var.certificate_binding_type == "SniEnabled" ? azurerm_container_app_environment_certificate.main.id : null
+  container_app_environment_certificate_id = var.certificate_binding_type == "SniEnabled" ? azurerm_container_app_environment_certificate.main[0].id : null
   certificate_binding_type                 = var.certificate_binding_type
 }
 
