@@ -348,6 +348,12 @@ variable "custom_domain" {
   description = "The name of the custom domain"
 }
 
+variable "certificate_binding_type" {
+  type        = string
+  default     = "Disabled"
+  description = "The Certificate Binding type. Possible values include Disabled and SniEnabled. SniEnabled requires custom_domain_cert and custom_domain_cert_password"
+}
+
 variable "custom_domain_cert" {
   type        = string
   default     = null
