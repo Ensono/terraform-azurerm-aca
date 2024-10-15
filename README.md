@@ -185,7 +185,7 @@ Please refer to the sub folders under `examples` folder. You can provide `terraf
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.108.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 3.108.0 |
 
 ## Modules
 
@@ -196,13 +196,16 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_container_app.container_app](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app) | resource |
+| [azurerm_container_app_custom_domain.app](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_custom_domain) | resource |
 | [azurerm_container_app_environment.container_app_env](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_environment) | resource |
+| [azurerm_container_app_environment_certificate.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_environment_certificate) | resource |
 | [azurerm_resource_group.container_group_rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_certificate_binding_type"></a> [certificate\_binding\_type](#input\_certificate\_binding\_type) | The Certificate Binding type. Possible values include Disabled and SniEnabled. SniEnabled requires custom\_domain\_cert and custom\_domain\_cert\_password | `string` | `"Disabled"` | no |
 | <a name="input_container_app_container_max_replicas"></a> [container\_app\_container\_max\_replicas](#input\_container\_app\_container\_max\_replicas) | (Optional) The maximum number of replicas for the containers. | `number` | `null` | no |
 | <a name="input_container_app_container_min_replicas"></a> [container\_app\_container\_min\_replicas](#input\_container\_app\_container\_min\_replicas) | (Optional) The minimum number of replicas for the containers. | `number` | `null` | no |
 | <a name="input_container_app_container_revision_suffix"></a> [container\_app\_container\_revision\_suffix](#input\_container\_app\_container\_revision\_suffix) | The revision suffix for the containers | `string` | `null` | no |
@@ -232,7 +235,11 @@ No modules.
 | <a name="input_container_app_workload_profile_name"></a> [container\_app\_workload\_profile\_name](#input\_container\_app\_workload\_profile\_name) | (Optional) The name of the Workload Profile in the Container App Environment to place this Container App | `string` | `null` | no |
 | <a name="input_create_container_app"></a> [create\_container\_app](#input\_create\_container\_app) | Set value whether to create Container Apps or not. | `bool` | `false` | no |
 | <a name="input_create_container_app_environment"></a> [create\_container\_app\_environment](#input\_create\_container\_app\_environment) | Set value whether to create a Container App Environment or not. | `bool` | `false` | no |
+| <a name="input_create_custom_domain_for_container_app"></a> [create\_custom\_domain\_for\_container\_app](#input\_create\_custom\_domain\_for\_container\_app) | Whether you want to create a custom domain for the Container App | `bool` | `false` | no |
 | <a name="input_create_rg"></a> [create\_rg](#input\_create\_rg) | Set value whether to create a Resource group or not. | `bool` | `true` | no |
+| <a name="input_custom_domain"></a> [custom\_domain](#input\_custom\_domain) | The name of the custom domain | `string` | `null` | no |
+| <a name="input_custom_domain_cert"></a> [custom\_domain\_cert](#input\_custom\_domain\_cert) | The Certificate Private Key as a base64 encoded PFX or PEM | `string` | `null` | no |
+| <a name="input_custom_domain_cert_password"></a> [custom\_domain\_cert\_password](#input\_custom\_domain\_cert\_password) | The password for the Certificate | `string` | `null` | no |
 | <a name="input_location"></a> [location](#input\_location) | The location of the resource group | `string` | n/a | yes |
 | <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | (Optional) The ID for the Log Analytics Workspace to link this Container Apps Managed Environment to. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group | `string` | n/a | yes |
@@ -250,4 +257,4 @@ No modules.
 | <a name="output_container_app_name"></a> [container\_app\_name](#output\_container\_app\_name) | The name of the created Container App |
 | <a name="output_container_app_principal_id"></a> [container\_app\_principal\_id](#output\_container\_app\_principal\_id) | The Principal ID of the Container App's Managed Identity |
 | <a name="output_container_rg_name"></a> [container\_rg\_name](#output\_container\_rg\_name) | The name of the created RG |
-<!-- END_TF_DOCS -->
+| <a name="output_static_ip_address"></a> [static\_ip\_address](#output\_static\_ip\_address) | n/a |

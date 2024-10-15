@@ -337,3 +337,33 @@ variable "container_app_container_volumes" {
   description = "Set of volumes for the Containers"
 }
 
+variable "create_custom_domain_for_container_app" {
+  default     = false
+  description = "Whether you want to create a custom domain for the Container App"
+}
+
+variable "custom_domain" {
+  type        = string
+  default     = null
+  description = "The name of the custom domain"
+}
+
+variable "certificate_binding_type" {
+  type        = string
+  default     = "Disabled"
+  description = "The Certificate Binding type. Possible values include Disabled and SniEnabled. SniEnabled requires custom_domain_cert and custom_domain_cert_password"
+}
+
+variable "custom_domain_cert" {
+  type        = string
+  default     = null
+  description = "The Certificate Private Key as a base64 encoded PFX or PEM"
+  sensitive   = true
+}
+
+variable "custom_domain_cert_password" {
+  type        = string
+  default     = null
+  description = "The password for the Certificate"
+  sensitive   = true
+}

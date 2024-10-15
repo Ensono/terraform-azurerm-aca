@@ -207,3 +207,19 @@ resource "azurerm_container_app" "container_app" {
     }
   }
 }
+
+resource "azurerm_container_app_custom_domain" "app" {
+  count                                    = var.create_custom_domain_for_container_app ? 1 : 0
+  name                                     = var.custom_domain
+  container_app_id                         = azurerm_container_app.container_app[0].id
+  container_app_environment_certificate_id = var.certificate_binding_type == "SniEnabled" ? azurerm_container_app_environment_certificate.main[0].id : null
+  certificate_binding_type                 = var.certificate_binding_type
+}
+
+resource "azurerm_container_app_environment_certificate" "main" {
+  count                        = var.certificate_binding_type == "SniEnabled" ? 1 : 0
+  name                         = var.custom_domain
+  container_app_environment_id = var.create_container_app_environment ? azurerm_container_app_environment.container_app_env[0].id : var.container_app_environment_id
+  certificate_blob_base64      = var.custom_domain_cert
+  certificate_password         = var.custom_domain_cert_password
+}
