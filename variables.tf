@@ -358,10 +358,12 @@ variable "custom_domain_cert" {
   type        = string
   default     = null
   description = "The Certificate Private Key as a base64 encoded PFX or PEM"
+  sensitive   = true
 }
 
 variable "custom_domain_cert_password" {
   type        = string
   default     = null
   description = "The password for the Certificate"
+  sensitive   = true
 }
