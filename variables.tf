@@ -343,7 +343,7 @@ variable "create_custom_domain_for_container_app" {
 }
 
 variable "custom_domain" {
-  type        = bool
+  type        = string
   default     = null
   description = "The name of the custom domain"
 }
