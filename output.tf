@@ -25,7 +25,7 @@ output "container_app_id" {
 
 output "container_app_fqdn" {
   description = "The FQDN of the created Container App"
-  value       = var.create_container_app ? azurerm_container_app.container_app[0].ingress[0].fqdn : null
+  value       = var.create_container_app && var.container_app_ingress_external_enabled ? azurerm_container_app.container_app[0].ingress[0].fqdn : null
 }
 
 output "container_app_principal_id" {
